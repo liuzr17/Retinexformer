@@ -91,7 +91,7 @@ def shift_back(inputs, step=2):
     return inputs[:, :, :, :out_col]
 
 
-
+# 光照估计网络，输入图像b 3 h w 输出光照特征b c h w（c是光照估计网络的初始化参数）和光照图b 3 h w
 class Illumination_Estimator(nn.Module):
     def __init__(
             self, n_fea_middle, n_fea_in=4, n_fea_out=3):  #__init__部分是内部属性，而forward的输入才是外部输入
@@ -121,7 +121,8 @@ class Illumination_Estimator(nn.Module):
         return illu_fea, illu_map
 
 
-
+# 光照注意力 
+# 输入特征图和光照特征 b h w c 输出b h w c
 class IG_MSA(nn.Module):
     def __init__(
             self,
